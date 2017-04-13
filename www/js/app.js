@@ -1,14 +1,12 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
 var app = angular.module('starter', ['ionic', 'ngCordova']);
 
 app.run(function ($ionicPlatform) {
     'use strict';
 	$ionicPlatform.ready(function () {
-        if (window.cordova && window.cordova.plugins.Keyboard) {
+      
+		
+		
+		if (window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -24,8 +22,12 @@ app.run(function ($ionicPlatform) {
   });
 
 });
-app.controller('smsController', ['$scope','$cordovaSms', function($scope,$cordovaSms){
+
+
+
+app.controller('smsController', ['$scope','$cordovaSms','$http', function($scope,$cordovaSms,$http){
   
+	
  $scope.sms={};
       var options = {
       replaceLineBreaks: false, // true to replace \n by a new line, false by default
@@ -34,13 +36,30 @@ app.controller('smsController', ['$scope','$cordovaSms', function($scope,$cordov
        intent: ''        // send SMS without open any other app
       }
     };
+	
+	
+	var returnValue;
+	
+	function getRequest(text,to,from){
+	$http({
+  method: 'GET',
+  url: 'http://www.transltr.org/api/translate?text=' + text + '&to=' +to +'&from=' + from
+}).then(function successCallback(response) {
+		returnValue = response.data;
+   	console.log(returnValue.translationText);
+  }, function errorCallback(response) {
+      
+  });
+};
   
   $scope.sendSms=function(){
-    console.log($scope.sms.number);
-    console.log($scope.sms.message);
-    
+   console.log($scope.sms.number);
+   console.log($scope.sms.message);
+	  
+	getRequest($scope.sms.message,$scope.sms.language,'en');
+
     $cordovaSms
-        .send($scope.sms.number, $scope.sms.message, options)
+        .send($scope.sms.number,returnValue.translationText, options)
           .then(function() {
               // Success! SMS was sent
               console.log('Success');
