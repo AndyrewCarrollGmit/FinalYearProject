@@ -3,10 +3,7 @@ var app = angular.module('starter', ['ionic', 'ngCordova']);
 app.run(function ($ionicPlatform) {
     'use strict';
 	$ionicPlatform.ready(function () {
-      
-		
-		
-		if (window.cordova && window.cordova.plugins.Keyboard) {
+        if (window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -22,8 +19,6 @@ app.run(function ($ionicPlatform) {
   });
 
 });
-
-
 
 app.controller('smsController', ['$scope','$cordovaSms','$http', function($scope,$cordovaSms,$http){
   
@@ -51,10 +46,14 @@ app.controller('smsController', ['$scope','$cordovaSms','$http', function($scope
       
   });
 };
+	
   
   $scope.sendSms=function(){
    console.log($scope.sms.number);
    console.log($scope.sms.message);
+	
+	  alert("SMS has been sent");
+	  
 	  
 	getRequest($scope.sms.message,$scope.sms.language,'en');
 
