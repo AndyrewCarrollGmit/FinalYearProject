@@ -7,4 +7,4 @@ Final Year Software Development Project - Andrew Carroll
  <p> Please Click the wiki link : https://github.com/AndyrewCarrollGmit/FinalYearProject/wiki to read more about the application </p>
 
 # Video Demo
-<p> https://www.youtube.com/watch?v=2c2GOMWH8rs&feature=youtu.be </p>
+<p> https://www.youtube.com/watch?v=2c2GOMWH8rs&feature=youtu.be  The Quality in the video when uploaded to youtube dropped so please find here screenshots of the application too https://github.com/AndyrewCarrollGmit/FinalYearProject/wiki/Features </p>
